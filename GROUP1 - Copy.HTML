@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSIT-1A GROUP PORTFOLIO</title>
+    <!-- Links to your separate style.css file -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Interactive Mouse Spotlight -->
+    <div class="spotlight" id="spotlight"></div>
+
+    <!-- 3D Moving Cyber Grid -->
+    <div class="cyber-grid"></div>
+
+    <!-- Ambient Glowing Background Orbs -->
+    <div class="glow-orb" style="top: -100px; left: -100px;"></div>
+    <div class="glow-orb orb2"></div>
+
+    <!-- Floating Binary Code Particles -->
+    <div class="tech-particles" id="particles"></div>
+
+    <!-- Portfolio Content Overlay -->
+    <div class="content-overlay">
+        <h1>NAIXUS INC.</h1>
+        <p class="subtitle">University of Eastern Pangasinan</p>
+        
+        <!-- Clickable Folders Dock -->
+        <div class="portfolio-dock">
+            <div class="folder" id="folderProjects">
+                <div class="folder-content">
+                    <div class="folder-title">Members:</div>
+                    <div class="folder-info">4 Member's Résumés</div>
+                </div>
+            </div>
+
+            <div class="folder" id="folderTech">
+                <div class="folder-content">
+                    <div class="folder-title">/Projects</div>
+                    <div class="folder-info">HTML, CSS, Python</div>
+                </div>
+            </div>
+
+            <div class="folder" id="folderConnect">
+                <div class="folder-content">
+                    <div class="folder-title">/Contact</div>
+                    <div class="folder-info">Facebook & Group Info</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- OS Window Explorer Popup (Menu & Resumes) -->
+        <div class="explorer-window" id="explorerWindow">
+            <div class="window-header">
+                <div class="window-title" id="windowTitle">C:\Users\BSIT-1A\Projects</div>
+                <div class="window-controls">
+                    <div class="dot minimize"></div>
+                    <div class="dot maximize"></div>
+                    <div class="dot close" id="closeBtn">▲</div>
+                </div>
+            </div>
+            <div class="window-body" id="windowBody">
+                <!-- Content injected dynamically via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Spotlight Tracker
+        const spotlight = document.getElementById('spotlight');
+        window.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            spotlight.style.setProperty('--mouse-x', `${x}%`);
+            spotlight.style.setProperty('--mouse-y', `${y}%`);
+        });
+
+        // Floating Code Particles
+        const particlesContainer = document.getElementById('particles');
+        const codeChars = ['0', '1', '{ }', '</>', 'const', 'sudo', 'API', 'HTML', 'CSS','C++',
+        'Database','Network','BSIT','Portfolio','Developer','Programmer','Frontend','Backend'];
+        
+        for (let i = 0; i < 15; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.innerText = codeChars[Math.floor(Math.random() * codeChars.length)];
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = `${Math.random() * 100}vh`;
+            particle.style.animationDuration = `${Math.random() * 8 + 6}s`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            particlesContainer.appendChild(particle);
+        }
+
+        // Resumes Database
+        const teamResumes = {
+            john: {
+                bg: "arjay.jpg",
+                overlay: ".45",
+                textColor: "#000",
+                pic: "nimuan.png",
+                name: "JOHN ELISEO P. NIMUAN",
+                title: "Aspiring IT Professional / Web Developer",
+                contact: "📍 Pozorrubio, Pangasinan | 📞 09072926781 | ✉️ johneliseonimuan03@gmail.com",
+                objective: "Motivated student seeking to build a strong foundation in Information Technology, expand programming skills, and contribute effectively through web development and design projects.",
+                skills: "<li>HTML5 & CSS3</li><li>Basic C++ programming</li><li>Basic Python programming</li><li>Graphic & Custom Shirt Design</li>",
+                education: "<strong>BS Information Technology</strong><br>University of Eastern Pangasinan (2026 - Present)",
+                references: "Angelita L. Palad (09705793362)"
+            },
+            gian: {
+                bg: "tacmo.jpg",
+                overlay: ".0",
+                textColor: "#ffffff",
+                pic: "gian.jpg",
+                name: "GIAN TACMO",
+                title: "BSIT-1A Student | Developer",
+                contact: "📍 Manaoag, Pangasinan | 📞 09296365322 | ✉️ giantacmo28@gmail.com",
+                objective: "Passionate IT student focused on networking, coding, wireless problem, and problem-solving systems.",
+                skills: "<li>Hardware Troubleshooting</li><li>Basic Networking</li><li>HTML / CSS</li><li>Computer Maintenance</li>",
+                education: "<strong>BS Information Technology</strong><br>University of Eastern Pangasinan (2026 - Present)",
+                references: "Asuncion E. Tacmo (09632540357)"
+            },
+            michoe: {
+                bg: "talino.jpg",
+                overlay: ".0",
+                textColor: "#ffffff",
+                pic: "miko.jpg",
+                name: "MHICOE TALINO",
+                title: "BSIT-1A Student | Programmer",
+                contact: "📍 Laoac, Pangasinan | 📞 09288944022 | ✉️ talinomhicoe08@gmail.com",
+                objective: "Eager to learn software development principles and database management.",
+                skills: "<li>Database Fundamentals</li><li>Python Programming</li><li>Web Design</li>",
+                education: "<strong>BS Information Technology</strong><br>University of Eastern Pangasinan (2026 - Present)",
+                references: "Maribel M. Talino (0949 150 2761)"
+            },
+            keziah: {
+                bg: "yvette.jpg",
+                overlay: ".45",
+                pic: "keziah.jpg",
+                name: "KEZIAH YVETTE",
+                title: "BSIT-1A Student | Designer",
+                contact: "📍 La Union, Pangasinan | 📞 09612630140 | ✉️ keziahyvettem@gmail.com",
+                objective: "Focused on creative web interfaces, user experience, and front-end development.",
+                skills: "<li>UI/UX Prototyping</li><li>HTML5 / CSS3</li><li>Graphic Design</li>",
+                education: "<strong>BS Information Technology</strong><br>University of Eastern Pangasinan (2026 - Present)",
+                references: "None specified"
+            }
+        };
+
+        const folderProjects = document.getElementById('folderProjects');
+        const folderTech = document.getElementById('folderTech');
+        const folderConnect = document.getElementById('folderConnect');
+        const explorerWindow = document.getElementById('explorerWindow');
+        const closeBtn = document.getElementById('closeBtn');
+        const windowTitle = document.getElementById('windowTitle');
+        const windowBody = document.getElementById('windowBody');
+
+        function renderMenu() {
+            windowTitle.innerText = 'C:\\Users\\BSIT-1A\\Resume';
+            windowBody.innerHTML = `
+                <div class="file-item" data-member="john">
+                    <div class="file-icon">📄</div>
+                    <div class="file-name">JOHN_ELISEO_NIMUAN</div>
+                </div>
+                <div class="file-item" data-member="gian">
+                    <div class="file-icon">📄</div>
+                    <div class="file-name">GIAN_TACMO</div>
+                </div>
+                <div class="file-item" data-member="michoe">
+                    <div class="file-icon">📄</div>
+                    <div class="file-name">MHICOE_TALINO</div>
+                </div>
+                <div class="file-item" data-member="keziah">
+                    <div class="file-icon">📄</div>
+                    <div class="file-name">KEZIAH_YVETTE</div>
+                </div>
+            `;
+
+            const items = windowBody.querySelectorAll('.file-item');
+            items.forEach(item => {
+                item.addEventListener('click', function() {
+                    const memberKey = this.getAttribute('data-member');
+                    renderResume(memberKey);
+                });
+            });
+        }
+
+        function renderResume(key) {
+            const data = teamResumes[key];
+            windowTitle.innerText = `C:\\Users\\BSIT-1A\\Projects\\${data.name.replace(/ /g, '_')}.html`;
+            windowBody.innerHTML = `
+                <button class="back-btn" id="backBtn">← Back to Member List</button>
+                <div class="resume-container"style="background:linear-gradient(rgba(255,255,255,${data.overlay}),rgba(255,255,255,${data.overlay})),
+                    url('${data.bg}');background-size:cover;background-position:center;">
+                     <div class="resume-header">
+                     <img src="${data.pic}" class="profile-pic" alt="Profile Picture">
+                      <div class="resume-info">
+                       <h2 style="color:${data.textColor || '#0f172a'}">${data.name}</h2>
+                       <p class="resume-title"style="color:${data.textColor || '#64748b'}">${data.title}</p>
+                        <div class="resume-contact">
+                        <span style="color:${data.textColor || '#475569'}">${data.contact}</span>
+                        </div>
+                    </div>
+                </div>
+                    <hr class="resume-divider">
+                    <div class="resume-grid">
+                        <div class="resume-col">
+                            <div class="resume-section"><h3>Career Objective</h3><p style="color:${data.textColor || '#334155'}">${data.objective}</p>
+                            </div>
+                            <div class="resume-section"><h3>Technical Skills</h3><ul style="color:${data.textColor || '#334155'}">${data.skills.replace(/<li>/g,'<li style="color:' + (data.textColor || '#334155') + ';">')}</ul></div>
+                        </div>
+                        <div class="resume-col">
+                            <div class="resume-section"><h3>Education</h3><p style="color:${data.textColor || '#334155'}">${data.education}</p></div>
+                            <div class="resume-section"><h3>References</h3><p style="color:${data.textColor || '#334155'}">${data.references}</p></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('backBtn').addEventListener('click', renderMenu);
+        }
+        folderProjects.addEventListener('click', function() {
+        folderProjects.classList.add('active');
+        folderTech.classList.remove('active');
+        folderConnect.classList.remove('active');
+        explorerWindow.classList.add('active');
+        renderMenu();
+        });
+
+        folderTech.addEventListener('click', function() {
+        folderTech.classList.add('active');
+        folderProjects.classList.remove('active');
+        folderConnect.classList.remove('active');
+        explorerWindow.classList.add('active');
+
+    windowTitle.innerText = 'C:\\Users\\BSIT-1A\\Projects\\Projects.html';
+
+    windowBody.innerHTML = `
+        <div class="resume-container" style="background:linear-gradient(rgba(255,255,255,.50),rgba(255,255,255,.50)),
+        url('bg.project.jpg');background-size: cover;background-position: center;background-repeat: no-repeat;">
+            <h2>PROJECTS</h2>
+            <hr>
+
+            <div class="resume-section">
+                <h3>Languages & Tools</h3>
+                <p style="font-size:20px;
+                 font-weight:bold;color:#000;">
+                HTML5 • CSS3 • Python</p>
+            </div>
+
+            <div class="resume-section">
+                <div class="resume-section">
+    <h3>GROUP ACTIVITIES</h3>
+    <div class="project-gallery">
+
+         <div class="file-item" onclick="showProject('john')">
+         📁 John's Activities</div>
+
+         <div class="file-item" onclick="showProject('gian')">
+         📁 Gian's Activities</div>
+
+         <div class="file-item" onclick="showProject('michoe')">
+        📁 Mhicoe's Activities</div>
+
+         <div class="file-item" onclick="showProject('keziah')">
+         📁 Keziah's Activities</div>
+    </div>
+</div>
+    `;
+});
+
+    folderConnect.addEventListener('click', function() {
+    folderConnect.classList.add('active'); 
+    folderProjects.classList.remove('active');
+    folderTech.classList.remove('active');   
+    explorerWindow.classList.add('active');
+
+    windowTitle.innerText = 'C:\\Users\\BSIT-1A\\Projects\\Contact.html';
+    windowBody.innerHTML =
+    `<div class="resume-container" style="background:linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.55)),
+     url('fb.ig.jpg');background-size: cover;background-position: center;background-repeat: no-repeat;">
+    <h2>CONTACT INFORMATION</h2>
+    <hr>
+
+    <div class="contact-grid">
+
+        <div class="contact-column">
+
+            <div class="resume-section">
+                <h3>JOHN ELISEO P. NIMUAN</h3>
+                <p>
+                 <a href="https://www.facebook.com/share/1F6qgmWqtA/" target="_blank"><i class="fab fa-facebook" style="color: #1877F2;"></i> Facebook </a>
+                 | <a href="#" target="_blank"><i class="fab fa-instagram" style="color: #E4405F;"></i> Instagram</a>
+                </p>
+            </div>
+
+            <div class="resume-section">
+                <h3>GIAN TACMO</h3>
+                <p>
+                <a href="https://www.facebook.com/share/1JaMBN2p5P/" target="_blank"><i class="fab fa-facebook" style="color: #1877F2;"></i> Facebook </a>
+                <a href="https://www.instagram.com/rekagiii_?dlrf=N3lvOHh1aTd1ajA0" target="_blank">| <i class="fab fa-instagram" style="color: #E4405F;"></i> Instagram</a>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="contact-column">
+
+            <div class="resume-section">
+                <h3>MICHOE TALINO</h3>
+                <p>
+                <a href="https://www.facebook.com/share/1Jh9fE1SzP/" target="_blank"><i class="fab fa-facebook" style="color: #1877F2;"></i> Facebook </a>
+                <a href="https://www.instagram.com/_mhicodezx?dlrf=MXJscml5MG4yZXNwZw==" target="_blank">| <i class="fab fa-instagram" style="color: #E4405F;"></i> Instagram</a>
+                </p>
+            </div>
+
+            <div class="resume-section">
+                <h3>KEZIAH YVETTE</h3>
+                 <p>
+                <a href="https://www.facebook.com/share/1DoomwQbwK/" target="_blank"><i class="fab fa-facebook" style="color: #1877F2;"></i> Facebook </a>
+                <a href="https://www.instagram.com/yvettekssjsjkksjw?fbclid=IwY2xjawVNF_1leHRuA2FlbQIxMABwZG9mBWJyaWQRMXlVcGtOdHZ2RFZPN1RKTDhzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEenihGOhWVt3lPF9wHgzArcuPomW0z" target="_blank"> | <i class="fab fa-instagram" style="color: #E4405F;"></i> Instagram </a>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+ `;
+});
+   function showProject(member){
+
+    const projects = {
+        john: "act.n.jpg",
+        gian: "act.g.png",
+        michoe: "act.m.jpg",
+        keziah: "act.k.jpg"
+    };
+
+    windowBody.innerHTML = `
+        <button class="back-btn"
+        onclick="folderTech.click()">
+        ← Back
+        </button>
+
+        <img src="${projects[member]}"
+        style="
+        width:100%;
+        border-radius:10px;
+        ">
+    `;
+}     
+        closeBtn.addEventListener('click', function() {
+            folderProjects.classList.remove('active');
+            folderTech.classList.remove('active');
+            folderConnect.classList.remove('active');
+            explorerWindow.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
